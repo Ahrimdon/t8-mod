@@ -222,7 +222,7 @@ namespace game_console
 			con.screen_pointer.y = con.screen_min[1] + 6.0f;
 
 			draw_input_box(1, con_inputBoxColor);
-			draw_input_text_and_over("PROJECT-BO4 >", con_inputWriteDownColor);
+			draw_input_text_and_over("T8-Mod >", con_inputWriteDownColor);
 
 			con.auto_complete_choice[0] = 0;
 
