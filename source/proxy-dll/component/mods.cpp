@@ -20,7 +20,7 @@ namespace mods {
 	constexpr const char* gsic_magic = "GSIC";
 
 	constexpr const char* mod_metadata_file = "metadata.json";
-	std::filesystem::path mod_dir = "project-bo4/mods";
+	std::filesystem::path mod_dir = "t8-mod/mods";
 
 	namespace {
 		struct raw_file

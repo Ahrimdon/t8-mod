@@ -72,7 +72,7 @@ namespace blackbox
 			utilities::thread::suspend_other_threads();
 			show_mouse_cursor();
 
-			MessageBoxA(nullptr, error_str.data(), "Project-BO4 ERROR", MB_ICONERROR);
+			MessageBoxA(nullptr, error_str.data(), "T8-Mod ERROR", MB_ICONERROR);
 			TerminateProcess(GetCurrentProcess(), exception_data.code);
 		}
 
@@ -84,7 +84,7 @@ namespace blackbox
 				++recovery_data.recovery_counts;
 
 				game::Com_Error(game::ERR_DROP, "Fatal error (0x%08X) at 0x%p (0x%p).\nA minidump has been written.\n\n"
-				                "Project-BO4 has tried to recover your game, but it might not run stable anymore.\n\n"
+				                "T8-Mod has tried to recover your game, but it might not run stable anymore.\n\n"
 				                "Make sure to update your graphics card drivers and install operating system updates!\n"
 				                "Closing or restarting Steam might also help.",
 				                exception_data.code, exception_data.address,
@@ -262,7 +262,7 @@ namespace blackbox
 			utilities::compression::zip::archive zip_file{};
 			zip_file.add("crash.dmp", exception::create_minidump(exceptioninfo));
 			zip_file.add("info.txt", generate_crash_info(exceptioninfo));
-			zip_file.write(crash_name, "Project-bo4 Crash Dump");
+			zip_file.write(crash_name, "T8-Mod Crash Dump");
 		}
 
 		bool is_harmless_error(const LPEXCEPTION_POINTERS exceptioninfo)
