@@ -37,6 +37,7 @@ namespace logger
 		OutputDebugStringA(text.c_str());
 #endif // OUTPUT_DEBUG_API
 
+		printf(text.c_str()); //print debug messages to new console
 		std::ofstream fs;
 		fs.open("t8-mod.log", std::ios_base::app);
 
