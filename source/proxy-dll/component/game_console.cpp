@@ -379,7 +379,7 @@ namespace game_console
 					utilities::hook::invoke<bool>(game::Live_SystemInfo, 0, 0, sysinfo_version, 256);
 					char sysinfo_livebits[256];
 					utilities::hook::invoke<bool>(game::Live_SystemInfo, 0, 1, sysinfo_livebits, 256);
-					const char* info = utilities::string::va("Project-BO4 1.0.0, Engine Version: %s, LiveBits: %s", sysinfo_version, sysinfo_livebits);
+					const char* info = utilities::string::va("T8-Mod 1.0.0, Engine Version: %s, LiveBits: %s", sysinfo_version, sysinfo_livebits);
 
 					game::R_AddCmdDrawText(info, 0x7FFFFFFF, R_DrawTextFont, x, ((height - 16.0f) + y) + con.font_height, con.font_scale, con.font_scale, 0.0f, con_outputVersionStringColor, 0);
 
