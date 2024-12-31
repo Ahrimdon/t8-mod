@@ -18,9 +18,8 @@ namespace logger
 
 	void write(const int type, std::string str)
 	{
-#ifndef _DEBUG
-		if (type == LOG_TYPE_DEBUG) return;
-#endif // _DEBUG
+		game_console::print(str);
+		if (type == type::LOG_TYPE_CONSOLE) return;
 
 		game_console::print(str);
 		if (type == type::LOG_TYPE_CONSOLE) return;
@@ -39,8 +38,10 @@ namespace logger
 		fs.open("t8-mod.log", std::ios_base::app);
 
 		time_t now = time(0);
-		std::tm* t = std::localtime(&now);
-		fs << "" << std::put_time(t, "%Y-%m-%d %H:%M:%S") << "\t" << text;
+		std::tm time;
+		localtime_s(&time, &now);
+
+		fs << "" << std::put_time(&time, "%Y-%m-%d %H:%M:%S") << "\t" << text;
 	}
 
 	void write(const int type, const char* fmt, ...)
