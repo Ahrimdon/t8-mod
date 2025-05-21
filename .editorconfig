@@ -1,4 +1,16 @@
+root = true
+
 [*]
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{cpp,hpp}]
+indent_style = tab
+indent_size = 4
+brace_style = next_line
+namespace_indentation = all
 cpp_indent_braces=false
 cpp_indent_multi_line_relative_to=innermost_parenthesis
 cpp_indent_within_parentheses=indent
@@ -57,3 +69,22 @@ cpp_space_around_assignment_operator=insert
 cpp_space_pointer_reference_alignment=left
 cpp_space_around_ternary_operator=insert
 cpp_wrap_preserve_blocks=one_liners
+
+# Markdown
+#
+# A paragraph consists of one or more consecutive lines of text, separated by
+# one or more blank lines. A blank line is defined as any line that appears
+# empty; it may contain only spaces or tabs. Normal paragraphs should not begin
+# with spaces or tabs for indentation.
+#
+# The rule of "one or more consecutive lines of text" means that Markdown
+# supports "hard-wrapped" text paragraphs. This is notably different from many
+# other text-to-HTML converters, such as Movable Type's "Convert Line Breaks"
+# option, which converts every line break within a paragraph into a <br /> tag.
+#
+# If you need to insert a <br /> tag for a line break, end the line with two or
+# more spaces and then press return. Note that editors must be told to preserve
+# "trailing whitespace" to maintain this formatting.
+#
+[*.{[Mm][Dd],[Mm][Kk][Dd],[Mm][Dd][Oo][Ww][Nn],[Mm][Kk][Dd][Oo][Ww][Nn],[Mm][Aa][Rr][Kk][Dd][Oo][Ww][Nn]}]
+trim_trailing_whitespace = false
