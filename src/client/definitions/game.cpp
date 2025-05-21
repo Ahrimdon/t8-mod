@@ -18,7 +18,7 @@ namespace game
 	{
 		if (*(int*)0x1449CA7E8_g != 13869365) // BlackOps4 CL(13869365) BEYQBBUILD106 DEV [Wed Feb 22 16:31:32 2023]
 		{
-			throw std::runtime_error("Unsupported BlackOps4.exe Version. This DLL Expects Latest BNET Build");
+			throw std::runtime_error("Unsupported BlackOps4.exe version. This DLL requires the latest BattleNET build.");
 		}
 
 #ifdef DEBUG
