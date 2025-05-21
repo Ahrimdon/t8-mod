@@ -1,0 +1,150 @@
+name: Build and Release T8-Mod
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - "src/**"
+
+    # paths-ignore:
+    #   - ".gitea"
+    #   - ".vscode"
+    #   - "assets"
+    #   - "tools"
+    #   - ".gitignore"
+    #   - ".gitmodules"
+    #   - "build.bat"
+    #   - "generate.bat"
+    #   - "premake5.lua"
+    #   - "README.md"
+
+  # tags:
+  #   - "*" # Trigger the workflow when any tag is pushed. This causes an infinite loop with my janky curl method
+  # schedule:
+  # - cron: "0 0 * * 0"  # Runs weekly on Sunday at midnight UTC
+  # - cron: "*/1 * * * *"  # Runs every 1 minute
+  # - cron: "0 0 0 0 0"
+jobs:
+  build:
+    name: Compile and Stage
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        configuration:
+          - Release
+    steps:
+      - name: Check Out Files
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+          lfs: false # Note: If LFS ever starts getting used during builds, switch this to true!
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1.3
+
+      - name: Generate Project
+        run: tools/premake5 vs2022
+
+      - name: Set Up Problem Matching
+        uses: ammaraskar/msvc-problem-matcher@master
+
+      - name: Build Release Binary
+        run: msbuild /m /v:minimal /p:Configuration=${{matrix.configuration}} /p:Platform=x64 build/t8-mod.sln
+
+      - name: Stage Release
+        run: |
+          mkdir ./release-artifacts
+
+
+      - name: Upload Release Binary Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: XInput9_1_0.dll
+          compression-level: 9
+          path: |
+            build/bin/x64/${{matrix.configuration}}/XInput9_1_0.dll
+
+      - name: Upload Debug Release Binary Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: XInput9_1_0.pdb
+          compression-level: 9
+          path: |
+            build/bin/x64/${{matrix.configuration}}/XInput9_1_0.pdb
+
+  Release:
+    needs: build
+    name: Publish Release Assets
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download Release Binary Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: XInput9_1_0.dll
+          path: ./release-artifacts
+
+      - name: Download Debug Binary Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: XInput9_1_0.pdb
+          path: ./release-artifacts
+
+        # This is the jankiest shit I've ever done, but it works
+      - name: Delete Tag
+        run: |
+          curl -X "DELETE" "https://git.rimmyscorner.com/api/v1/repos/Rim/t8-mod/tags/latest" -H "authorization: token ${{ secrets.TOKEN }}"
+
+      - name: Delete Release
+        run: |
+          curl -X "DELETE" "https://git.rimmyscorner.com/api/v1/repos/Rim/t8-mod/releases/tags/latest" -H "authorization: token ${{ secrets.TOKEN }}"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          tag_name: latest
+          release_name: T8-Mod
+          body: |
+            - [Where can I get the game?](https://git.rimmyscorner.com/Rim/t8-mod#where-can-i-get-the-game)
+            - [Instructions](https://git.rimmyscorner.com/Rim/t8-mod#instructions)
+
+            Compiled by [Actions Runner](https://git.rimmyscorner.com/Rim/t8-mod/actions)
+
+            ## Disclaimer<a id="disclaimer"></a>
+
+            We do not condone piracy of any kind. Asking for, providing, or discussing illegal download links is not allowed in our communities.
+
+            <a id="downloads"></a>
+          draft: false
+          prerelease: false
+
+      - name: Release Client Binary
+        uses: shogo82148/actions-upload-release-asset@v1.8.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-artifacts/XInput9_1_0.dll
+          asset_name: XInput9_1_0.dll
+          asset_content_type: application/octet-stream
+
+      - name: Release Debug Binary
+        uses: shogo82148/actions-upload-release-asset@v1.8.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-artifacts/XInput9_1_0.pdb
+          asset_name: XInput9_1_0.dll.pdb
+          asset_content_type: application/octet-stream
