@@ -62,7 +62,7 @@ jobs:
       - name: Upload Release Binary Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: XInput9_1_0.dll
+          name: XInput9_1_0
           compression-level: 9
           path: |
             build/bin/x64/${{matrix.configuration}}/XInput9_1_0.dll
@@ -70,7 +70,7 @@ jobs:
       - name: Upload Debug Release Binary Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: XInput9_1_0.pdb
+          name: XInput9_1_0-Debug-Binary
           compression-level: 9
           path: |
             build/bin/x64/${{matrix.configuration}}/XInput9_1_0.pdb
@@ -146,5 +146,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./release-artifacts/XInput9_1_0.pdb
-          asset_name: XInput9_1_0.dll.pdb
+          asset_name: XInput9_1_0.pdb
           asset_content_type: application/octet-stream
