@@ -89,13 +89,13 @@ jobs:
       - name: Download Release Binary Artifact
         uses: actions/download-artifact@v3
         with:
-          name: XInput9_1_0.dll
+          name: XInput9_1_0
           path: ./release-artifacts
 
       - name: Download Debug Binary Artifact
         uses: actions/download-artifact@v3
         with:
-          name: XInput9_1_0.pdb
+          name: XInput9_1_0-Debug-Binary
           path: ./release-artifacts
 
         # This is the jankiest shit I've ever done, but it works
