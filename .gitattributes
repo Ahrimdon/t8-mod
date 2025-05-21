@@ -1,0 +1,48 @@
+# Force Unix-style crlf line endings for source files
+*.c     text eol=crlf diff=cpp
+*.cc    text eol=crlf diff=cpp
+*.cxx   text eol=crlf diff=cpp
+*.cpp   text eol=crlf diff=cpp
+*.cpi   text eol=crlf diff=cpp
+*.c++   text eol=crlf diff=cpp
+*.h     text eol=crlf diff=cpp
+*.hpp   text eol=crlf diff=cpp
+*.h++   text eol=crlf diff=cpp
+*.hh    text eol=crlf diff=cpp
+
+# Force crlf for other common text-based files
+*.txt   text eol=crlf
+*.md    text eol=crlf
+*.json  text eol=crlf
+*.xml   text eol=crlf
+*.html  text eol=crlf
+*.css   text eol=crlf
+*.js    text eol=crlf
+*.lua   text eol=crlf
+*.py    text eol=crlf
+*.sh    text eol=crlf
+*.bat   text eol=crlf
+*.rc    text eol=crlf
+*.inl   text eol=crlf
+
+# Treat binary files correctly
+*.slo   binary
+*.lo    binary
+*.o     binary
+*.obj   binary
+
+*.gch   binary
+*.pch   binary
+
+*.so    binary
+*.dylib binary
+*.dll   binary
+
+*.lai   binary
+*.la    binary
+*.a     binary
+*.lib   binary
+
+*.exe   binary
+*.out   binary
+*.app   binary
