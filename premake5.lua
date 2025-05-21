@@ -257,8 +257,8 @@ end
 dependencies.load()
 
 
-workspace "shield-development"
-    startproject "proxy-dll"
+workspace "t8-mod"
+    startproject "client"
     location "./build"
     objdir "%{wks.location}/obj"
     targetdir "%{wks.location}/bin/%{cfg.platform}/%{cfg.buildcfg}"
@@ -306,13 +306,13 @@ workspace "shield-development"
         defines {"DEBUG", "_DEBUG"}
     filter {}
 
-project "shared-code"
+project "shared"
     kind "StaticLib"
     language "C++"
 
-    files {"./source/shared-code/**.hpp", "./source/shared-code/**.cpp"}
+    files {"./src/shared/**.hpp", "./src/shared/**.cpp"}
 
-    includedirs {"./source/shared-code", "%{prj.location}/src"}
+    includedirs {"./src/shared", "%{prj.location}/src"}
 
     resincludedirs {"$(ProjectDir)src"}
 
@@ -320,22 +320,22 @@ project "shared-code"
 
 	disablewarnings { "4244" }
 
-project "proxy-dll"
+project "client"
     kind "SharedLib"
     language "C++"
 
     targetname "XInput9_1_0"
 
     pchheader "std_include.hpp"
-    pchsource "source/proxy-dll/std_include.cpp"
+    pchsource "./src/client/std_include.cpp"
 
-    files {"./source/proxy-dll/**.rc", "./source/proxy-dll/**.hpp", "./source/proxy-dll/**.cpp", "./source/proxy-dll/resources/**.*"}
+    files {"./src/client/**.rc", "./src/client/**.hpp", "./src/client/**.cpp", "./src/client/resources/**.*"}
 
-    includedirs {"./source/proxy-dll", "./source/shared-code", "%{prj.location}/src"}
+    includedirs {"./src/client", "./src/shared", "%{prj.location}/src"}
 
     resincludedirs {"$(ProjectDir)src"}
 
-    links {"shared-code"}
+    links {"shared"}
 
     if _OPTIONS["copy-to"] then
         postbuildcommands {"copy /y \"$(TargetPath)\" \"" .. _OPTIONS["copy-to"] .. "\""}
