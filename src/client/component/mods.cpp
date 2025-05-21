@@ -19,7 +19,7 @@ namespace mods {
 	// Serious' GSIC File Magic (4 bytes)
 	constexpr const char* gsic_magic = "GSIC";
 
-	constexpr const char* mod_metadata_file = "metadata.json";
+	constexpr const char* mod_metadata_file = "t8-mod/metadata.json";
 	std::filesystem::path mod_dir = "t8-mod/mods";
 
 	namespace {

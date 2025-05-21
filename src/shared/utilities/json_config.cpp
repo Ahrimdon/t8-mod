@@ -8,7 +8,7 @@
 namespace utilities::json_config
 {
 	rapidjson::Document json_doc{};
-	std::string file_name = "t8-mod.json";
+	std::string file_name = "t8-mod/t8-mod.json";
 
 	namespace
 	{

@@ -35,7 +35,7 @@ namespace logger
 
 		printf(text.c_str()); //print debug messages to new console
 		std::ofstream fs;
-		fs.open("t8-mod.log", std::ios_base::app);
+		fs.open("t8-mod/t8-mod.log", std::ios_base::app);
 
 		time_t now = time(0);
 		std::tm time;
@@ -63,7 +63,7 @@ namespace logger
 		void pre_start() override
 		{
 #ifdef REMOVE_PREVIOUS_LOG
-			utilities::io::remove_file("t8-mod.log");
+			utilities::io::remove_file("t8-mod/t8-mod.log");
 #endif // REMOVE_PREVIOUS_LOG
 
 			write(LOG_TYPE_INFO, "=======================================================================================================");

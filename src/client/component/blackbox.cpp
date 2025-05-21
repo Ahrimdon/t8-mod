@@ -256,7 +256,7 @@ namespace blackbox
 
 		void write_minidump(const LPEXCEPTION_POINTERS exceptioninfo)
 		{
-			const std::string crash_name = utilities::string::va("minidumps/shield-crash-%s.zip",
+			const std::string crash_name = utilities::string::va("minidumps/t8-mod-crash-%s.zip",
 			                                                 get_timestamp().data());
 
 			utilities::compression::zip::archive zip_file{};
