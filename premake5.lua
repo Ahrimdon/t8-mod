@@ -351,6 +351,8 @@ pchsource("./src/client/std_include.cpp")
 
 files({ "./src/client/**.rc", "./src/client/**.hpp", "./src/client/**.cpp", "./src/client/resources/**.*" })
 
+removefiles({ "src/client/component/watermark.cpp" }) -- remove watermark.cpp from build for now
+
 includedirs({ "./src/client", "./src/shared", "%{prj.location}/src" })
 
 resincludedirs({ "$(ProjectDir)src" })
