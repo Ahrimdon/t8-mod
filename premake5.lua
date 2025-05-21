@@ -154,6 +154,10 @@ newaction {
 			proc = assert(io.popen("git branch --show-current"))
 			local branchName = proc:read('*l')
 
+			-- get current build date/time
+			local buildDate = os.date("%Y-%m-%d")
+			local buildTime = os.date("%H:%M:%S")
+
 			-- branch for ci
 			if branchName == nil or branchName == '' then
 				proc = assert(io.popen("git show -s --pretty=%d HEAD"))
@@ -194,6 +198,9 @@ newaction {
 			versionHeader:write("#define GIT_HASH " .. cstrquote(gitCommitHash) .. "\n")
 			versionHeader:write("#define GIT_TAG " .. cstrquote(tagName) .. "\n")
 			versionHeader:write("#define GIT_BRANCH " .. cstrquote(branchName) .. "\n")
+			-- write build date and time to version.h
+			versionHeader:write("#define BUILD_DATE " .. cstrquote(buildDate) .. "\n")
+			versionHeader:write("#define BUILD_TIME " .. cstrquote(buildTime) .. "\n")
 			versionHeader:write("\n")
 			versionHeader:write("// Version transformed for RC files\n")
 			versionHeader:write("#define VERSION_PRODUCT_RC " .. table.concat(vertonumarr(tagName, revNumber, 3), ",") .. "\n")
@@ -342,10 +349,10 @@ project "client"
     end
 
     dependencies.imports()
-	
+
 	disablewarnings { "4244" }
 
 group "Dependencies"
     dependencies.projects()
-	
+
 prebuildcommands {"pushd %{_MAIN_SCRIPT_DIR}", "tools\\premake5 generate-buildinfo", "popd"}
