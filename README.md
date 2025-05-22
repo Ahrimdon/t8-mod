@@ -35,7 +35,7 @@
 1. Place **`XInput9_1_0.dll`** into your Black Ops 4 game directory
 2. Extract the contents of **`LPC.zip`** into your Black Ops 4 game directory
 3. Install the client by dropping **`XInput9_1_0.dll`** into your Black Ops 4 game directory
-4. Launch the game using **`BlackOps4_boot.exe`** you will know if you got it correctly if you see a ( ͡❛ ͜ʖ ͡❛) splash screen. (use existing one in directory, executable is provided for redundancy)
+4. Launch the game using **`BlackOps4.exe`** you will know if you got it correctly if you see a ( ͡❛ ͜ʖ ͡❛) splash screen. (use existing one in directory, executable is provided for redundancy)
 
 ## Where can I get the game?<a id="where-can-i-get-the-game"></a>
 
