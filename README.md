@@ -1,7 +1,7 @@
 # T8 Mod
 
 <p align="center"> <img
-  src="assets/gitea/banner-t8.jpg?raw=true"
+  src="assets/github/banner-t8.jpg?raw=true"
   />
 </p>
 
