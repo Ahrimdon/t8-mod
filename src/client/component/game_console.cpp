@@ -12,6 +12,8 @@
 #include <utilities/string.hpp>
 #include <utilities/concurrency.hpp>
 
+#include "version.hpp"
+
 #define R_DrawTextFont reinterpret_cast<void*>(game::sharedUiInfo->assets.bigFont)
 #define R_WhiteMaterial reinterpret_cast<void*>(game::sharedUiInfo->assets.whiteMaterial)
 
@@ -223,7 +225,7 @@ namespace game_console
 			con.screen_pointer.y = con.screen_min[1] + 6.0f;
 
 			draw_input_box(1, con_inputBoxColor);
-			draw_input_text_and_over("T8-Mod >", con_inputWriteDownColor);
+			draw_input_text_and_over("T8-Mod: " VERSION " > ", con_inputWriteDownColor);
 
 			con.auto_complete_choice[0] = 0;
 
@@ -288,7 +290,7 @@ namespace game_console
 
 					auto offset_y = height + 3.f;
 					auto domain_lines = 1;
-					if (dvar->type == game::DVAR_TYPE_ENUM) 
+					if (dvar->type == game::DVAR_TYPE_ENUM)
 						domain_lines = dvar->domain.enumeration.stringCount + 1;
 
 					draw_hint_box(domain_lines, con_inputHintBoxColor, 0, offset_y);
@@ -455,7 +457,7 @@ namespace game_console
 
 		if (*game::keyCatchers & 1)
 		{
-			if (key == game::keyNum_t::K_TAB) // tab (auto complete) 
+			if (key == game::keyNum_t::K_TAB) // tab (auto complete)
 			{
 				if (con.may_auto_complete)
 				{
@@ -711,4 +713,4 @@ namespace game_console
 	};
 }
 
-REGISTER_COMPONENT(game_console::component) 
+REGISTER_COMPONENT(game_console::component)
