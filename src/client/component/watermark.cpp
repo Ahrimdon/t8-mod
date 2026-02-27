@@ -24,7 +24,7 @@ namespace watermark
 
             float color[4] = { 0.666f, 0.666f, 0.666f, 0.666f };
 
-            game::R_AddCmdDrawText(text, 0x7FFFFFFF, font, x, y, scale, scale, 0.0f, color, 
+            game::R_AddCmdDrawText(text, 0x7FFFFFFF, font, x, y, scale, scale, 0.0f, color,
                                                                 game::ITEM_TEXTSTYLE_NORMAL);
         }
     }
