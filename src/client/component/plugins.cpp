@@ -74,7 +74,7 @@ namespace plugins
 
 			for (const std::filesystem::directory_entry& sub : std::filesystem::directory_iterator{ plugins_dir })
 			{
-				const std::filesystem::path& p{ sub };
+				const std::filesystem::path& p = sub.path();
 
 				if (p.has_extension() && p.extension() != ".dll") continue;
 
