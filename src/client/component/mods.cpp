@@ -169,7 +169,7 @@ namespace mods {
 
 				if (dbg.has_feature(game::acts_debug::ADF_STRING))
 				{
-					char* start = data.data();
+					// char* start = data.data();
 					for (uint32_t* strs = dbg.get_strings(ptr); strs != dbg.get_strings_end(ptr); strs++)
 					{
 						const char* val = data.data() + *strs;
