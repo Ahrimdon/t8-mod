@@ -293,7 +293,12 @@ workspace "t8-mod"
         defines {"CI"}
     end
 
-    flags {"NoIncrementalLink", "NoMinimalRebuild", "MultiProcessorCompile", "No64BitChecks"}
+    -- flags {"NoIncrementalLink", "NoMinimalRebuild", "MultiProcessorCompile", "No64BitChecks"}
+
+    incrementallink "Off"
+    minimalrebuild "Off"
+    multiprocessorcompile "On"
+    enable64bitchecks "Off"
 
     filter "platforms:x64"
         defines {"_WINDOWS", "WIN32"}
@@ -304,8 +309,9 @@ workspace "t8-mod"
         buildoptions {"/GL"}
         linkoptions { "/IGNORE:4702", "/LTCG" }
         defines {"NDEBUG"}
-        flags {"FatalCompileWarnings"}
-        warnings "off"
+        -- flags {"FatalCompileWarnings"}
+		fatalwarnings "All"
+        warnings "High"
     filter {}
 
     filter "configurations:Debug"
