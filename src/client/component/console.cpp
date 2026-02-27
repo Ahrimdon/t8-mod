@@ -6,13 +6,15 @@
 #include <utilities/thread.hpp>
 #include <utilities/hook.hpp>
 
+#include "version.hpp"
+
 #define OUTPUT_HANDLE GetStdHandle(STD_OUTPUT_HANDLE)
 
 namespace console
 {
 	namespace
 	{
-		const char* branding_str = "shield> ";
+		const char* branding_str = "T8-Mod: " VERSION " > ";
 		int branding_length = static_cast<int>(std::strlen(branding_str));
 
 		utilities::hook::detour printf_hook;
@@ -321,7 +323,7 @@ namespace console
 			freopen_s(&empty, "CONOUT$", "r", stdin);
 			freopen_s(&empty, "CONOUT$", "w", stdout);
 			freopen_s(&empty, "CONOUT$", "w", stderr);
-			SetConsoleTitle("Project-Bo4:");
+			SetConsoleTitle("T8-Mod: " VERSION);
 
 			printf_hook.create(printf, printf_stub);
 
