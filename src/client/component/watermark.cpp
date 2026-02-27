@@ -12,7 +12,7 @@ namespace watermark
         {
             auto* font = reinterpret_cast<void*>(game::sharedUiInfo->assets.bigFont);
             constexpr auto scale = 0.4f;
-            constexpr const char* text = "Project-BO4: " VERSION;
+            constexpr const char* text = "T8-Mod: " VERSION;
 
             if (!font /*|| *game::keyCatchers & 1*/) return;
 

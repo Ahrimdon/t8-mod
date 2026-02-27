@@ -6,7 +6,7 @@
 
 namespace plugins
 {
-	std::filesystem::path plugins_dir = "project-bo4/plugins";
+	std::filesystem::path plugins_dir = "t8-mod/plugins";
     namespace
     {
 		using plugin_handler = void(*)();

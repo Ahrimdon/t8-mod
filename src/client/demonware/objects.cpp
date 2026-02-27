@@ -613,7 +613,7 @@ namespace demonware
 
 		bdProtobufHelper header_2nd;
 		header_2nd.writeString(1, "Authorization", 16);
-		header_2nd.writeString(2, "Bearer project-bo4", 2048);
+		header_2nd.writeString(2, "Bearer t8-mod", 2048);
 
 
 		bdProtobufHelper buffer;

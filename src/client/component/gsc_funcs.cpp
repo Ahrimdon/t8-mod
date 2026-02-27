@@ -724,15 +724,15 @@ namespace gsc_funcs
 				return;
 			}
 
-			std::string file{ std::format("project-bo4/saved/{}/{}.json", (inst ? "client" : "server"), fileid) };
+			std::string file{ std::format("t8-mod/saved/{}/{}.json", (inst ? "client" : "server"), fileid) };
 
 			if (inst)
 			{
-				std::filesystem::create_directories("project-bo4/saved/client");
+				std::filesystem::create_directories("t8-mod/saved/client");
 			}
 			else
 			{
-				std::filesystem::create_directories("project-bo4/saved/server");
+				std::filesystem::create_directories("t8-mod/saved/server");
 			}
 
 			game::ScrVarValue_t* val = &game::scrVmPub[inst].top[-1];
@@ -931,8 +931,8 @@ namespace gsc_funcs
 				gsc_error("json name can't be longer than %d", inst, false, gsc_json_data_name_max_length);
 				return;
 			}
-			
-			std::string file{ std::format("project-bo4/saved/{}/{}.json", (inst ? "client" : "server"), fileid) };
+
+			std::string file{ std::format("t8-mod/saved/{}/{}.json", (inst ? "client" : "server"), fileid) };
 
 			std::string file_content{};
 

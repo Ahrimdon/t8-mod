@@ -20,7 +20,7 @@ namespace mods {
 	constexpr const char* gsic_magic = "GSIC";
 
 	constexpr const char* mod_metadata_file = "metadata.json";
-	std::filesystem::path mod_dir = "project-bo4/mods";
+	std::filesystem::path mod_dir = "t8-mod/mods";
 
 	namespace {
 		template<typename T>
@@ -1195,17 +1195,17 @@ namespace mods {
 			if (!game::Com_IsRunningUILevel())
 			{
 				// avoid gsc issues, but if a script is loaded in the frontend, it will still crash
-				logger::write(logger::LOG_TYPE_CONSOLE, "can't load mods while in-game!"); 
+				logger::write(logger::LOG_TYPE_CONSOLE, "Unable to load mods while in-game.");
 				return;
 			}
 
 			if (!storage.load_mods())
 			{
-				logger::write(logger::LOG_TYPE_CONSOLE, "mods reloaded.");
+				logger::write(logger::LOG_TYPE_CONSOLE, "Mods reloaded successfully!");
 			}
 			else
 			{
-				logger::write(logger::LOG_TYPE_CONSOLE, "mods reloaded with errors, see logs.");
+				logger::write(logger::LOG_TYPE_CONSOLE, "Mods reloaded with errors, check logs.");
 			}
 		}
 	}
@@ -1363,7 +1363,7 @@ namespace mods {
 			hksl_loadfile_hook.create(0x14375D6A0_g, hksl_loadfile_stub);
 			bg_cache_sync_hook.create(0x1405CE0B0_g, bg_cache_sync_stub);
 
-			command::add("reload_mods", mods_reload_f, "Reload the shield mods");
+			command::add("reloadmods", mods_reload_f, "Reload Mods");
 		}
 	};
 }

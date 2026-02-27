@@ -236,14 +236,14 @@ namespace hashes
 			}
 
 			// load default files
-			std::filesystem::path default_file_name_str = "project-bo4/strings.txt";
+			std::filesystem::path default_file_name_str = "t8-mod/strings.txt";
 
 			if (std::filesystem::exists(default_file_name_str))
 			{
 				load_file(default_file_name_str, HFF_STRING);
 			}
 
-			std::filesystem::path default_file_name_common = "project-bo4/hashes.csv";
+			std::filesystem::path default_file_name_common = "t8-mod/hashes.csv";
 
 			if (std::filesystem::exists(default_file_name_common))
 			{

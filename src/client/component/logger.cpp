@@ -32,7 +32,7 @@ namespace logger
 
 		printf(text.c_str()); //print debug messages to new console
 		std::ofstream fs;
-		fs.open("project-bo4.log", std::ios_base::app);
+		fs.open("t8-mod/t8-mod.log", std::ios_base::app);
 
 		time_t now = time(0);
 		std::tm time;
@@ -60,11 +60,11 @@ namespace logger
 		void pre_start() override
 		{
 #ifdef REMOVE_PREVIOUS_LOG
-			utilities::io::remove_file("project-bo4.log");
+			utilities::io::remove_file("t8-mod/t8-mod.log");
 #endif // REMOVE_PREVIOUS_LOG
 
 			write(LOG_TYPE_INFO, "=======================================================================================================");
-			write(LOG_TYPE_INFO, " Project-BO4 Initializing ... %s[0x%llX]", utilities::nt::library{}.get_name().c_str(), utilities::nt::library{}.get_ptr());
+			write(LOG_TYPE_INFO, " T8-Mod Initializing ... %s[0x%llX]", utilities::nt::library{}.get_name().c_str(), utilities::nt::library{}.get_ptr());
 			write(LOG_TYPE_INFO, "=======================================================================================================");
 		}
 	};
