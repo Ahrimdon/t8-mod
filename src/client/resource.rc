@@ -78,9 +78,9 @@ BEGIN
             VALUE "Info", "https://github.com/Ahrimdon/t8-mod"
             VALUE "SupportUrl", "https://github.com/Ahrimdon/t8-mod/issues"
             VALUE "Comments", "Fork of https://github.com/project-bo4/shield-development"
-			VALUE "BuildDate", BUILD_DATE
+	    VALUE "BuildDate", BUILD_DATE
             VALUE "BuildTime", BUILD_TIME
-			VALUE "BuildType", "Release"
+	    VALUE "BuildType", "Release"
             VALUE "FileVersion", VERSION_FILE
             VALUE "ProductVersion", VERSION_PRODUCT
             VALUE "BuildCommit", GIT_HASH
