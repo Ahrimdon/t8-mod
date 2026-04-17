@@ -6631,8 +6631,8 @@ namespace variables
 			0x506e7e29c6d674bb
 		},
 		{
-			"full_restart",
-			"Full restart",
+			"map_restart",
+			"Map restart",
 			0x7cba6d063fbd73d0
 		},
 		{
